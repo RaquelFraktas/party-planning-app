@@ -1,9 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Welcome to my Ruby on Rails app.
 
-Things you may want to cover:
+TBD:
 
 * Ruby version
 
