@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  theme: 1
+  guest_id: 1
+  capacity: 1
+
+two:
+  theme: 1
+  guest_id: 1
+  capacity: 1
