@@ -1,9 +1,15 @@
 class UsersController < ApplicationController
     before_action :require_login
-    skip_before_action :require_login, only: [:new, :create]
+    skip_before_action :require_login, only: [:new, :create, :index]
 
-  def index
-  
+  def index 
+    if !logged_in?
+      redirect_to '/users/new'
+    else
+      render :show
+    end
+    #i am creating this view because when i render my error messages, it brings me to a /users path. if i refresh that page then it gives me an error. 
+    #i was originally not goig to have an index. 
   end
 
   def new
