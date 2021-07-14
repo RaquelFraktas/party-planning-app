@@ -3,23 +3,25 @@ class UsersController < ApplicationController
     skip_before_action :require_login, only: [:new]
 
   def index
+  
   end
 
   def new
     @user = User.new
-    #maybe i dont this
   end
 
   def create
     @user = User.create(user_params)
     if @user
         session[:user_id] = params[:user_id]
+        redirect_to "/home"
     else
-        redirect_to "new"
+        redirect_to "/new"
     end
   end
 
   def show
+    @user = User.find(session[user_id])
   end
 
   private
