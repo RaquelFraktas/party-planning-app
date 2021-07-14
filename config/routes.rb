@@ -5,8 +5,10 @@ Rails.application.routes.draw do
 
   get '/home' => 'users#show'
   get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  delete '/logout' => 'sessions#destroy'
+  #need to delete this logout get path later on
+  post '/logout' => 'sessions#destroy'
   
 
   root "sessions#index"
