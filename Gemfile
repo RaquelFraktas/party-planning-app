@@ -20,7 +20,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 gem 'bcrypt', '~> 3.1.7'
-gem 'dotenv'
+gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-google'
 gem 'omniauth-facebook'

@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end  
 
   def create
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(email: params[:email]) unless facebook_auth
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to "/home"
@@ -27,6 +27,21 @@ class SessionsController < ApplicationController
   def destroy
     session.destroy
     redirect_to '/'
+  end
+
+  def facebook_omniauth
+    # byebug
+    user = helpers.facebook_auth(user_info)
+    if user
+      session[:user_id] = user.id
+      redirect_to home_path
+    else
+      #add a flash error if the user already is in the system and prompt them to log in instead
+      redirect_to login_path
+    end
+  end
+
+  def google_omniauth
   end
 
 end

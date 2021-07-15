@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   #need to delete this logout get path later on
   post '/logout' => 'sessions#destroy'
-  
+  get '/auth/facebook/callback' => 'sessions#facebook_omniauth' 
 
   root "sessions#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
