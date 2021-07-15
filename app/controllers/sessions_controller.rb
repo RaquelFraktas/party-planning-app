@@ -42,6 +42,7 @@ class SessionsController < ApplicationController
   end
 
   def google_omniauth
+    byebug
   end
 
 end
