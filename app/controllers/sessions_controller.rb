@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end  
 
   def create
-    @user = User.find_by(email: params[:email]) unless facebook_auth
+    @user = User.find_by(email: params[:email]) 
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect_to "/home"
@@ -21,7 +21,6 @@ class SessionsController < ApplicationController
       flash.now[:invalid_credentials] = "Invalid Credendtials. Please re-enter your login information."
       render :new
     end
-    #we render a form_tag instead of a form_for while logging in because we are not saving it to the database
   end
 
   def destroy
@@ -30,19 +29,33 @@ class SessionsController < ApplicationController
   end
 
   def facebook_omniauth
-    # byebug
-    user = helpers.facebook_auth(user_info)
-    if user
-      session[:user_id] = user.id
-      redirect_to home_path
-    else
-      #add a flash error if the user already is in the system and prompt them to log in instead
-      redirect_to login_path
-    end
+    user_info = auth
+    user = User.o_auth_find_info(user_info)
+    user_session_or_redirect(user)
   end
 
   def google_omniauth
-    byebug
+    user_info = auth
+    user = User.o_auth_find_info(user_info)
+    user_session_or_redirect(user)
   end
+
+  #maybe those routes can be changed to just go through one method?
+
+  protected
+  
+    def auth
+      request.env['omniauth.auth']["info"]
+    end
+
+  private 
+    def user_session_or_redirect(user)
+      if user
+        session[:user_id] = user.id
+        redirect_to home_path
+      else
+        redirect_to login_path
+      end
+    end
 
 end
