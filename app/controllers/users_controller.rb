@@ -5,9 +5,8 @@ class UsersController < ApplicationController
   def index 
     if !logged_in?
       redirect_to '/users/new'
-    else
-      render :show
     end
+    @user = current_user
     #i am creating this view because when i render my error messages, it brings me to a /users path. if i refresh that page then it gives me an error. 
     #i was originally not goig to have an index. 
   end
@@ -27,7 +26,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(session[:user_id])
+    @user = User.find(params[:id])
   end
 
   private
