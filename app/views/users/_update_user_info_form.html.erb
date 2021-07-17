@@ -1,0 +1,10 @@
+<%= render partial: "layouts/errors", locals: {record: user} %>
+
+<div class="form">
+<%= form_for(user) do |f| %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+
+    <%= f.submit %>
+  <% end %> 
+  </div>

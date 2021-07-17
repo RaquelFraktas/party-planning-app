@@ -26,13 +26,31 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
+  end
+
+  def edit
+    @user= current_user
+  end
+
+  def update
+    @user= current_user
+    if @user.password == (params[:password])
+      @user.update(user_params_for_update)
+      redirect_to home_path
+    else
+      render :new
+    end
   end
 
   private
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def user_params_for_update
+    params.require(:user).permit(:name)
   end
 
   def require_login
