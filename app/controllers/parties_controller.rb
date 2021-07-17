@@ -14,6 +14,9 @@ class PartiesController < ApplicationController
 
   def create
     @party = Party.create(party_params)
+    @party.users.host= current_user
+    
+    byebug
     redirect_to party_path(@party)
   end
   
