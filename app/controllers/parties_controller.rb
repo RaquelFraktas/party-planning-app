@@ -13,11 +13,14 @@ class PartiesController < ApplicationController
   end
 
   def create
-    @party = Party.create(party_params)
-    @party.users.host= current_user
+    user = User.find(session[:user_id])
+    if user.admin
+      @party = Party.create(party_params)
+      byebug
+      redirect_to party_path(@party)
+    else
+    end
     
-    byebug
-    redirect_to party_path(@party)
   end
   
   private

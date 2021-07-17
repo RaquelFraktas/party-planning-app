@@ -3,7 +3,9 @@ class Party < ApplicationRecord
   validates_presence_of :capacity  
 
   has_many :users_parties
-  has_many :users, through: :users_parties
+  has_many :guests, through: :users_parties
+  belongs_to :host
+  
   belongs_to :theme
   has_many :comments, through: :parties_comments
 
@@ -13,6 +15,13 @@ class Party < ApplicationRecord
 
   def theme_name
      self.theme ? self.theme.name : nil
+  end
+
+  def self.party_admin
+    user = find(session[:user_id])
+    if user.admin
+      self.users.host
+    end
   end
 
 end

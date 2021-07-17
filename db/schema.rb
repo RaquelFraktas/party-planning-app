@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_051310) do
+ActiveRecord::Schema.define(version: 2021_07_17_201625) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "users_id", null: false
@@ -52,7 +52,8 @@ ActiveRecord::Schema.define(version: 2021_07_17_051310) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
-    t.boolean "host"
+    t.string "type"
+    t.boolean "admin"
   end
 
   create_table "users_parties", force: :cascade do |t|

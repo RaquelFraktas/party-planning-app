@@ -3,7 +3,6 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
   
   has_many :user_parties
-  has_many :parties, through: :users_parties
   has_many :comments
 
   def self.o_auth_find_info(user_info)
@@ -12,8 +11,6 @@ class User < ApplicationRecord
       u.image = user_info['image']
       u.password = SecureRandom.hex
     end 
-  end  
- 
-  
+  end    
 
 end
