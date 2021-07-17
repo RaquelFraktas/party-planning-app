@@ -1,0 +1,15 @@
+<div class="form">
+<%= form_for(party) do |f| %>
+
+    <%= f.label :name %><br>
+    <%= f.text_field :name %><br>
+  
+    <%= f.label :theme %><br>
+    <%= f.text_field :theme_name %><br>
+
+    <%= f.label :capacity %><br>
+    <%= f.text_field :capacity %><br>
+    <%= f.hidden_field :user_id, :value => @party.user_ids %>
+    <%= f.submit %>
+  <% end %> 
+  </div>

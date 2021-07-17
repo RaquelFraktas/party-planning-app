@@ -1,0 +1,9 @@
+<%= @party.name %>
+<%= @party.theme.name %>
+<%= @party.capacity %>
+Guests/ hosts
+<ul class = "guest_list">
+<% @party.users.each do |user|%>
+    <li> <%=user.name %> </li>
+<% end %>
+</ul>

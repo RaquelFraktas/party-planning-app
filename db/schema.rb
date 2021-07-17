@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_022120) do
+ActiveRecord::Schema.define(version: 2021_07_17_034702) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "users_id", null: false
@@ -21,12 +21,11 @@ ActiveRecord::Schema.define(version: 2021_07_16_022120) do
   end
 
   create_table "parties", force: :cascade do |t|
-    t.integer "theme"
+    t.string "name"
     t.integer "capacity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "theme_id", null: false
-    t.string "name"
     t.index ["theme_id"], name: "index_parties_on_theme_id"
   end
 
