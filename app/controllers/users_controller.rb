@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user = User.create(user_params)
     if @user.save
         session[:user_id] = @user.id
+        @user.is_host
         redirect_to "/home"
     else
         render :new

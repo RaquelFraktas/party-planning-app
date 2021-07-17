@@ -17,11 +17,11 @@ class Party < ApplicationRecord
      self.theme ? self.theme.name : nil
   end
 
-  def self.party_admin
-    user = find(session[:user_id])
-    if user.admin
-      self.users.host
-    end
-  end
+  # def self.party_admin
+  #   user = find(session[:user_id])
+  #   if user.admin
+  #     self.users.host
+  #   end
+  # end
 
 end

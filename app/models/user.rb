@@ -13,4 +13,8 @@ class User < ApplicationRecord
     end 
   end    
 
+  def is_host
+    self.admin ? self.type == host : self.type == guest
+  end
+
 end
