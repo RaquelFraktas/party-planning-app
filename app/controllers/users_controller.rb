@@ -16,10 +16,9 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = !params[:user][:admin].empty? ? Host.create(user_params) : Guest.create(user_params)
     if @user.save
         session[:user_id] = @user.id
-        @user.is_host
         redirect_to "/home"
     else
         render :new
@@ -32,6 +31,7 @@ class UsersController < ApplicationController
 
   def edit
     @user= current_user
+    @user.is_host
   end
 
   def update

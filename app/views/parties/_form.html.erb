@@ -4,12 +4,19 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %><br>
   
-    <%= f.label :theme %><br>
-    <%= f.text_field :theme_name %><br>
+    <div class= "create_theme">
+    <%= f.fields_for :theme do |theme| %>
+      <%= theme.label :Theme_Name %>
+      <%= theme.text_field :name %><br>
+
+      <%= theme.label :era %>
+      <%= theme.text_field :era %><br>
+    <% end %> 
+    </div>
 
     <%= f.label :capacity %><br>
     <%= f.text_field :capacity %><br>
-    <%= f.hidden_field :host, :value => @party.host %>
+    <%= f.hidden_field :host, :value => :current_user %>
     <%= f.submit %>
   <% end %> 
   </div>

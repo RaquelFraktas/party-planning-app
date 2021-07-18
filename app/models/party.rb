@@ -9,13 +9,20 @@ class Party < ApplicationRecord
   belongs_to :theme
   has_many :comments, through: :parties_comments
 
-  def theme_name=(name)
-    self.theme = Theme.find_or_create_by(name: name)
+  accepts_nested_attributes_for :theme
+
+  def theme_attributes=(theme)
+    self.theme = Theme.find_or_create_by(name: theme[:name])
+    self.theme.update(theme)
   end
 
-  def theme_name
-     self.theme ? self.theme.name : nil
-  end
+  # def theme_name=(name)
+  #   self.theme = Theme.find_or_create_by(name: name)
+  # end
+
+  # def theme_name
+  #    self.theme ? self.theme.name : nil
+  # end
 
   # def self.party_admin
   #   user = find(session[:user_id])

@@ -10,23 +10,22 @@ class PartiesController < ApplicationController
 
   def new
     @party = Party.new
+    @party.theme = Theme.new
   end
 
   def create
-    user = User.find(session[:user_id])
-    if user.admin
+    #throw in admin acccess only to creat method somewhere.
+    # user = User.find(session[:user_id])
       @party = Party.create(party_params)
       byebug
       redirect_to party_path(@party)
-    else
-    end
     
   end
   
   private
 
   def party_params
-    params.require(:party).permit(:name, :theme_name, :capacity, :user)
+    params.require(:party).permit(:name, :capacity, theme_attributes: [:name, :era])
   end
 
 
