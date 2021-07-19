@@ -37,8 +37,10 @@ class UsersController < ApplicationController
 
   def update
     @user= current_user
-    if @user.save 
       @user.update(user_params_for_update)
+      # @user.host_or_guest_account
+      #check to see if this works where we left off.
+    if @user.save
       redirect_to home_path
     else
       render :new
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def user_params_for_update
-    params.require(params[:type].to_sym.downcase).permit(:name, :email)
+    params.require(params[:type].to_sym.downcase).permit(:name, :email, :admin)
   end
 
   def require_login

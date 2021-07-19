@@ -9,7 +9,8 @@ class Party < ApplicationRecord
  
   
   belongs_to :theme
-  # has_many :comments, through: :parties_comments
+  has_many :rsvps
+  has_many :guests, through: :rsvps, foreign_key: :user_id
 
   accepts_nested_attributes_for :theme
 

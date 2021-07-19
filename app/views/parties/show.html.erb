@@ -1,7 +1,8 @@
-<%= @party.name %>
-<%= @party.theme.name %>
-<%= @party.capacity %>
-Guests/ hosts
+<%= @party.name %> <br>
+<%= @party.theme.name %> <br>
+<%= @party.capacity %> <br>
+
+
 <ul class = "guest_list">
 <% if !@party.guests.blank? %>
 <% @party.guests.each do |guest|%>
@@ -9,3 +10,15 @@ Guests/ hosts
   <% end %>
 <% end %>
 </ul>
+
+
+
+
+  <%= form_for @party do |f| %>
+    <%= f.hidden_field :guest_id, value: guest.id %>
+    <%= f.submit " #{party.guests.size} people attending" %>
+    <% end %>
+
+    <% if current_user.type == "Guest" %>
+    Would you like to attend this party?
+    <% end %>

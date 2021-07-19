@@ -3,8 +3,8 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
   
   has_many :parties
+  has_many :rsvps
   # has_many :parties, through: :user_parties
-  # has_many :comments
 
 
 
@@ -16,5 +16,8 @@ class User < ApplicationRecord
     end 
   end    
 
+  def host_or_guest_account
+    self.!params[:user][:admin].empty? ? Host.create(user_params) : Guest.create(user_params)
+  end
 
 end
