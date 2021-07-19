@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
   resources :themes
   resources :parties
+  
   resources :users, only: [:new, :create, :destroy, :edit, :update, :show]
-
+  resources :hosts, :controller => 'users'
+  resources :guests, :controller => 'users'
+  
   get '/home' => 'users#index'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
