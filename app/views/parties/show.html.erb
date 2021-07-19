@@ -8,15 +8,17 @@
 <% @party.guests.each do |guest|%>
     <li> <%=guest.name %> </li>
   <% end %>
+  <% else %>
+    There is currently nobody attending.
 <% end %>
 </ul>
 
 
 
-
-  <%= form_for @party do |f| %>
-    <%= f.hidden_field :guest_id, value: guest.id %>
-    <%= f.submit " #{party.guests.size} people attending" %>
+  <%= form_for Rsvp.new , method: :post, url: party_path(@party) do |f| %>
+    <%= f.hidden_field :party_id, value: @party.id %>
+    #in controller do current_user.rsvp.build - or pass current user from rsvps 
+    <%= f.submit " RSVP" %>
     <% end %>
 
     <% if current_user.type == "Guest" %>
