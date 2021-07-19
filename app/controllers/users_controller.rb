@@ -52,7 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params_for_update
-    params.require(params[:type].to_sym.downcase).permit(:name, :email, :password, :password_confirmation, :admin)
+    params.require(params[:type].to_sym.downcase).permit(:name, :email)
   end
 
   def require_login

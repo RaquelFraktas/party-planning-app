@@ -1,3 +1,5 @@
 <h1> Welcome <%= @user.name %> </h1>
 
 Click here to <%= link_to "edit", edit_user_path(@user) %> your details.
+
+<%= render partial: "party_list", locals: {user: @user} %>
