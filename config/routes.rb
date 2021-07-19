@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :parties
   
   resources :users, only: [:new, :create, :destroy, :edit, :update, :show]
-  resources :hosts, :controller => 'users'
-  resources :guests, :controller => 'users'
+  resources :hosts, :controller => 'users', type: "Host"
+  resources :guests, :controller => 'users', type: "Guest"
   
   get '/home' => 'users#index'
   get '/login' => 'sessions#new'

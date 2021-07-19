@@ -52,12 +52,7 @@ class UsersController < ApplicationController
   end
 
   def user_params_for_update
-    case current_user.type
-    when "host"
-      params.require(:host).permit(:name, :email, :password, :password_confirmation, :admin)
-    when "guest"
-      params.require(:guest).permit(:name, :email, :password, :password_confirmation, :admin)
-    end
+    params.require(params[:type].to_sym.downcase).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def require_login
