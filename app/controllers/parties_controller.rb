@@ -14,11 +14,11 @@ class PartiesController < ApplicationController
   end
 
   def create
-    #throw in admin acccess only to creat method somewhere.
-    # user = User.find(session[:user_id])
-      @party = Party.create(party_params)
-      byebug
-      redirect_to party_path(@party)
+    @party = Party.new(party_params)
+    @party.host = current_user
+    @party.save
+    #    <%= f.hidden_field :host_id, :value => :current_user %>
+    redirect_to party_path(@party)
     
   end
   

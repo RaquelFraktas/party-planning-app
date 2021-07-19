@@ -3,7 +3,9 @@
 <%= @party.capacity %>
 Guests/ hosts
 <ul class = "guest_list">
-<% @party.users.each do |user|%>
-    <li> <%=user.name %> </li>
+<% if !@party.guests.blank? %>
+<% @party.guests.each do |guest|%>
+    <li> <%=guest.name %> </li>
+  <% end %>
 <% end %>
 </ul>

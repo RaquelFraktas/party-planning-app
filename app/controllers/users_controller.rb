@@ -17,6 +17,7 @@ class UsersController < ApplicationController
 
   def create
     @user = !params[:user][:admin].empty? ? Host.create(user_params) : Guest.create(user_params)
+    # @user= User.create(user_params)
     if @user.save
         session[:user_id] = @user.id
         redirect_to "/home"
@@ -31,12 +32,12 @@ class UsersController < ApplicationController
 
   def edit
     @user= current_user
-    @user.is_host
+
   end
 
   def update
     @user= current_user
-    if @user.password == (params[:password])
+    if @user.save 
       @user.update(user_params_for_update)
       redirect_to home_path
     else
@@ -51,7 +52,12 @@ class UsersController < ApplicationController
   end
 
   def user_params_for_update
-    params.require(:user).permit(:name)
+    case current_user.type
+    when "host"
+      params.require(:host).permit(:name, :email, :password, :password_confirmation, :admin)
+    when "guest"
+      params.require(:guest).permit(:name, :email, :password, :password_confirmation, :admin)
+    end
   end
 
   def require_login

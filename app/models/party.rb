@@ -2,12 +2,14 @@ class Party < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :capacity  
 
+  belongs_to :host, foreign_key: :user_id
+
   has_many :users_parties
   has_many :guests, through: :users_parties
-  belongs_to :host
+ 
   
   belongs_to :theme
-  has_many :comments, through: :parties_comments
+  # has_many :comments, through: :parties_comments
 
   accepts_nested_attributes_for :theme
 

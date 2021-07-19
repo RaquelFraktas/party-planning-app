@@ -1,4 +1,4 @@
-class AddUserIdToParties < ActiveRecord::Migration[6.1]
+class AddUsersToParties < ActiveRecord::Migration[6.1]
   def change
     add_reference :parties, :user, null: false, foreign_key: true
   end

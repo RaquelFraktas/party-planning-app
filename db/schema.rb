@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_17_201625) do
+ActiveRecord::Schema.define(version: 2021_07_19_042525) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "users_id", null: false
@@ -26,7 +26,9 @@ ActiveRecord::Schema.define(version: 2021_07_17_201625) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "theme_id", null: false
+    t.integer "user_id", null: false
     t.index ["theme_id"], name: "index_parties_on_theme_id"
+    t.index ["user_id"], name: "index_parties_on_user_id"
   end
 
   create_table "parties_comments", force: :cascade do |t|
@@ -48,17 +50,17 @@ ActiveRecord::Schema.define(version: 2021_07_17_201625) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
+    t.string "image"
+    t.boolean "admin"
     t.string "password_digest"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "image"
     t.string "type"
-    t.boolean "admin"
   end
 
   create_table "users_parties", force: :cascade do |t|
-    t.integer "user_id", null: false
     t.integer "party_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["party_id"], name: "index_users_parties_on_party_id"
@@ -67,6 +69,7 @@ ActiveRecord::Schema.define(version: 2021_07_17_201625) do
 
   add_foreign_key "comments", "users", column: "users_id"
   add_foreign_key "parties", "themes"
+  add_foreign_key "parties", "users"
   add_foreign_key "parties_comments", "comments"
   add_foreign_key "parties_comments", "parties"
   add_foreign_key "users_parties", "parties"
