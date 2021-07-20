@@ -3,8 +3,6 @@ class Party < ApplicationRecord
   validates_presence_of :capacity  
 
   belongs_to :host, foreign_key: :user_id
-  # has_many :users_parties
-  # has_many :guests, through: :users_parties, foreign_key: :user_id
   belongs_to :theme
   has_many :rsvps
   has_many :guests, through: :rsvps, foreign_key: :user_id

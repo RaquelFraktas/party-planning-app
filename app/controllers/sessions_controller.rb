@@ -30,13 +30,13 @@ class SessionsController < ApplicationController
 
   def facebook_omniauth
     user_info = auth
-    user = User.o_auth_find_info(user_info)
+    user = Guest.o_auth_find_info(user_info)
     user_session_or_redirect(user)
   end
 
   def google_omniauth
     user_info = auth
-    user = User.o_auth_find_info(user_info)
+    user = Guest.o_auth_find_info(user_info)
     user_session_or_redirect(user)
   end
 

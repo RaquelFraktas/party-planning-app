@@ -15,12 +15,10 @@
 
 
 
-  <%= form_for Rsvp.new , method: :post, url: party_path(@party) do |f| %>
-    <%= f.hidden_field :party_id, value: @party.id %>
-    #in controller do current_user.rsvp.build - or pass current user from rsvps 
-    <%= f.submit " RSVP" %>
-    <% end %>
-
-    <% if current_user.type == "Guest" %>
-    Would you like to attend this party?
+    <% if current_user.type == "Guest" && !@party.guests.include?(current_user) %>
+      <%= form_for Rsvp.new do |f| %>
+        <%= f.hidden_field :party_id, value: @party.id %>
+        #in controller do current_user.rsvp.build - or pass current user from rsvps 
+        <%= f.submit " RSVP" %>
+      <% end %>
     <% end %>

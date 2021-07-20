@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   resources :themes
   resources :parties
-  
   resources :users, only: [:new, :create, :destroy, :edit, :update, :show]
+  resources :rsvps, only: [:new, :create, :destroy]
   resources :hosts, :controller => 'users', type: "Host"
   resources :guests, :controller => 'users', type: "Guest"
   
