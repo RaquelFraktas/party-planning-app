@@ -1,6 +1,6 @@
-<%= @party.name %> <br>
-<%= @party.theme.name %> <br>
-<%= @party.capacity %> <br>
+Name of the party: <%= @party.name %> <br>
+Theme of the party: <%= @party.theme.name %> <br>
+Party capacity: <%= @party.capacity %> <br>
 
 
 <ul class = "guest_list">
@@ -18,7 +18,13 @@
     <% if current_user.type == "Guest" && !@party.guests.include?(current_user) %>
       <%= form_for Rsvp.new do |f| %>
         <%= f.hidden_field :party_id, value: @party.id %>
-        #in controller do current_user.rsvp.build - or pass current user from rsvps 
         <%= f.submit " RSVP" %>
       <% end %>
+      <% else %>
+      I can't make it anymore
+
+      <%= form_for :rsvps, :controller => "rsvps", method: :delete do |f| %>
+        <%= f.hidden_field :party_id, value: @party.id %>
+        <%= f.submit "Remove myself from the list" %>
+        <% end %>
     <% end %>

@@ -4,7 +4,7 @@ class Party < ApplicationRecord
 
   belongs_to :host, foreign_key: :user_id
   belongs_to :theme
-  has_many :rsvps
+  has_many :rsvps, dependent: :destroy
   has_many :guests, through: :rsvps, foreign_key: :user_id
 
   accepts_nested_attributes_for :theme

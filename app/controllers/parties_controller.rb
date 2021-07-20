@@ -30,6 +30,9 @@ class PartiesController < ApplicationController
 
   def update
   end
+
+  def destroy
+  end
   
   private
 

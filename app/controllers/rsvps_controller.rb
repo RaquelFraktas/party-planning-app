@@ -11,6 +11,9 @@ class RsvpsController < ApplicationController
     end
 
     def destroy
+        byebug
+        rsvp = Rsvp.find(params[:rsvps][:party_id])
+        rsvp.destroy
     end
 
     private

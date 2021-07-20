@@ -7,8 +7,6 @@ class UsersController < ApplicationController
       redirect_to '/users/new'
     end
     @user = current_user
-    #i am creating this view because when i render my error messages, it brings me to a /users path. if i refresh that page then it gives me an error. 
-    #i was originally not goig to have an index. 
   end
 
   def new
@@ -36,13 +34,21 @@ class UsersController < ApplicationController
 
   def update
     @user= current_user
-      @user.update(user_params_for_update)
-      # @user.host_or_guest_account
-      #check to see if this works where we left off.
+    @user.update(user_params_for_update)
     if @user.save
       redirect_to home_path
     else
       render :new
+    end
+  end
+
+  def destroy
+    if current_user.authenticate(params[:password])
+      current_user.destroy
+      session.clear 
+      redirect_to "/"
+    else
+      #render error message
     end
   end
 
