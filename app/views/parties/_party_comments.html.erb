@@ -2,7 +2,11 @@
 <ul class= "list_of_comments">  
 <% party.comments.each do |comment| %>
     <li><%= comment.user.name %>: 
-    <%= comment.content %> </li> <br>
+    <%= comment.content %> </li> 
+      <% if current_user == comment.user %>
+        <%= link_to "Edit your post", edit_party_comment_path(party, comment) %>
+        <br><br>
+        <% end %>
   <%end%>
 
 </ul>

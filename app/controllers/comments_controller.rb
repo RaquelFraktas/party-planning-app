@@ -1,7 +1,12 @@
 class CommentsController < ApplicationController
     before_action :require_login
-    
-  def new
+
+  def index
+    if params[:party_id]
+        @comments = Party.find(params[:party_id]).comments
+      else
+        @comments = Comment.all
+      end
   end
 
   def create
@@ -13,12 +18,24 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @comment = Comment.find(params[:id])
   end
 
   def update
+    @comment = Comment.find(params[:id])
+    @comment.update(comment_params)
+    if @comment.save
+      redirect_to party_path(@comment.party)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    comment = Comment.find(params[:id])
+    party = comment.party
+    comment.destroy
+    redirect_to party_path(party)
   end
 
   private
