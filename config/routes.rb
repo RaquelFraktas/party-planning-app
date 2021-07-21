@@ -6,12 +6,13 @@ Rails.application.routes.draw do
   end
 
   resources :comments
-  resources :users, only: [:new, :create, :destroy, :edit, :update, :show]
+  resources :users, only: [:new, :create, :destroy, :update, :show]
   resources :rsvps, only: [:new, :create, :destroy]
   resources :hosts, :controller => 'users', type: "Host"
   resources :guests, :controller => 'users', type: "Guest"
   
   get '/home' => 'users#index'
+  get '/user/edit' => 'users#edit'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

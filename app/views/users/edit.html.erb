@@ -1,14 +1,17 @@
 
 <%= render partial: "update_user_info_form", locals: {user: @user} %>
 
-
+<br><br>
 <div class = "delete field">
-
-
-</div>
+<% flash.each do |type, msg| %>
+  <div class="alert alert-info">
+    <%= msg %>
+  </div>
+<% end %>
 
 <%= form_tag user_path(@user), method: "delete" do %>
     <%= label_tag "To delete your account, please enter your password."  %> <br>
     <%= password_field_tag 'password', '' %>
     <input value='Delete Account' type='submit' id='submit-form'/>
   <% end %>
+  </div>

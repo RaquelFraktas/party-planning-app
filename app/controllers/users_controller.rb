@@ -43,13 +43,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user.authenticate(params[:password])
-      current_user.destroy
+    @user= current_user
+    if @user.authenticate(params[:password])
+      @user.destroy
       session.clear 
       redirect_to "/"
     else
-      #render edit message
-      render :edit
+      flash[:alert] = "Wrong password."
+      redirect_to edit_user_path
     end
   end
 

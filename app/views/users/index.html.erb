@@ -1,7 +1,7 @@
 <h1> Welcome <%= @user.name %> </h1>
 
 <div class ="index">
-Click here to <%= link_to "edit", edit_user_path(@user) %> your details.
+Click here to <%= link_to "edit", "/user/edit" %> your details.
 <br><br>
 <%= render partial: "party_list", locals: {user: @user} %>
 <br><br>
