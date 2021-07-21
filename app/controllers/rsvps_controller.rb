@@ -11,9 +11,9 @@ class RsvpsController < ApplicationController
     end
 
     def destroy
-        byebug
-        rsvp = Rsvp.find(params[:rsvps][:party_id])
-        rsvp.destroy
+      rsvp = Rsvp.find(params[:id])
+      rsvp.destroy
+      redirect_back(fallback_location: root_path)
     end
 
     private

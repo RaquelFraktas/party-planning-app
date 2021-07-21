@@ -1,5 +1,4 @@
 class Comment < ApplicationRecord
-  validates_presence_of :content
-  belongs_to :users
-  has_many :parties, through: :parties_comments
+  belongs_to :user_id
+  belongs_to :party_id
 end

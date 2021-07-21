@@ -13,18 +13,25 @@ Party capacity: <%= @party.capacity %> <br>
 <% end %>
 </ul>
 
+<div class= "rsvp-field">
+<% if @party.guests.count == @party.capacity %>
+  This party is currently at capacity. Check back later to see if any space opens up.
 
-
-    <% if current_user.type == "Guest" && !@party.guests.include?(current_user) %>
-      <%= form_for Rsvp.new do |f| %>
-        <%= f.hidden_field :party_id, value: @party.id %>
-        <%= f.submit " RSVP" %>
-      <% end %>
-      <% else %>
-      I can't make it anymore
-
-      <%= form_for :rsvps, :controller => "rsvps", method: :delete do |f| %>
-        <%= f.hidden_field :party_id, value: @party.id %>
-        <%= f.submit "Remove myself from the list" %>
-        <% end %>
+  <% elsif current_user.type == "Guest" && !@party.guests.include?(current_user) %>
+    <%= form_for Rsvp.new do |f| %>
+      <%= f.hidden_field :party_id, value: @party.id %>
+      <%= f.submit " RSVP" %>
     <% end %>
+  <% end %>
+
+  <br><br><br>
+    <% if @party.guests.include?(current_user) %>
+      I can't make it anymore.
+      <%= button_to "Remove myself from the list", rsvp_path(@rsvp), method: :delete %>
+    <% end %>
+
+    </div>
+
+    <% if current_user == @party.host %>
+       Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
+    <%end%>

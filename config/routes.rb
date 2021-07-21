@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   resources :themes
   resources :parties
   resources :users, only: [:new, :create, :destroy, :edit, :update, :show]

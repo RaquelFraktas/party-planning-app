@@ -1,6 +1,7 @@
 class Party < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :capacity  
+  validates_numericality_of :capacity
 
   belongs_to :host, foreign_key: :user_id
   belongs_to :theme

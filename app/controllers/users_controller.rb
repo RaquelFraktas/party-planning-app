@@ -38,7 +38,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to home_path
     else
-      render :new
+      render :edit
     end
   end
 
@@ -48,7 +48,8 @@ class UsersController < ApplicationController
       session.clear 
       redirect_to "/"
     else
-      #render error message
+      #render edit message
+      render :edit
     end
   end
 

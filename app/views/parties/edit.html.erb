@@ -1,0 +1,5 @@
+<%= render partial: "form", locals: {party: @party} %>
+<br>
+<div class ="delete_button">
+  <%= button_to "Delete party", party_path(@party), method: :delete, data: { confirm: "Are you sure you want to delete this event?" } %>
+</div>

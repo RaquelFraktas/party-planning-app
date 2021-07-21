@@ -6,6 +6,7 @@ class PartiesController < ApplicationController
 
   def show
     @party= Party.find(params[:id])
+    @rsvp = current_user_rsvp(@party)
   end
 
   def new
@@ -26,12 +27,26 @@ class PartiesController < ApplicationController
   end
 
   def edit
+    @party= Party.find(params[:id])
+    if !current_user == @party.host
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def update
+    @party= Party.find(params[:id])
+    @party.update(party_params)
+    if @party.save
+      redirect_to party_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    party = Party.find(params[:id])
+    party.destroy
+    redirect_to parties_path
   end
   
   private
@@ -40,5 +55,12 @@ class PartiesController < ApplicationController
     params.require(:party).permit(:name, :capacity, theme_attributes: [:name, :era])
   end
 
+  def current_user_rsvp(party)
+    current_user.rsvp_ids.each do|id|
+      if id == party.rsvp_ids
+        id
+      end
+    end
+  end
 
 end

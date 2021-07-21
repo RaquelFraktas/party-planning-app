@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_19_194742) do
+ActiveRecord::Schema.define(version: 2021_07_21_020126) do
 
   create_table "comments", force: :cascade do |t|
-    t.integer "users_id", null: false
+    t.integer "user_id", null: false
+    t.integer "party_id", null: false
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_comments_on_users_id"
+    t.index ["party_id"], name: "index_comments_on_party_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "parties", force: :cascade do |t|
@@ -29,15 +31,6 @@ ActiveRecord::Schema.define(version: 2021_07_19_194742) do
     t.integer "user_id", null: false
     t.index ["theme_id"], name: "index_parties_on_theme_id"
     t.index ["user_id"], name: "index_parties_on_user_id"
-  end
-
-  create_table "parties_comments", force: :cascade do |t|
-    t.integer "party_id", null: false
-    t.integer "comment_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_parties_comments_on_comment_id"
-    t.index ["party_id"], name: "index_parties_comments_on_party_id"
   end
 
   create_table "rsvps", force: :cascade do |t|
@@ -67,11 +60,10 @@ ActiveRecord::Schema.define(version: 2021_07_19_194742) do
     t.string "type"
   end
 
-  add_foreign_key "comments", "users", column: "users_id"
+  add_foreign_key "comments", "parties"
+  add_foreign_key "comments", "users"
   add_foreign_key "parties", "themes"
   add_foreign_key "parties", "users"
-  add_foreign_key "parties_comments", "comments"
-  add_foreign_key "parties_comments", "parties"
   add_foreign_key "rsvps", "parties"
   add_foreign_key "rsvps", "users"
 end
