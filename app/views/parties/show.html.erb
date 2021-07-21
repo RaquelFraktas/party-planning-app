@@ -35,3 +35,7 @@ Party capacity: <%= @party.capacity %> <br>
     <% if current_user == @party.host %>
        Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
     <%end%>
+
+    <br><br>
+
+    <%= render partial: "party_comments", locals: {party: @party} %>

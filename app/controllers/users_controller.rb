@@ -63,8 +63,8 @@ class UsersController < ApplicationController
     params.require(params[:type].to_sym.downcase).permit(:name)
   end
 
-  def require_login
-    return head(:forbidden) unless session.include? :user_id
-  end
+  # def require_login
+  #   return head(:forbidden) unless session.include? :user_id
+  # end
 
 end

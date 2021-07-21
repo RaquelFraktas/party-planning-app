@@ -1,4 +1,6 @@
 class PartiesController < ApplicationController
+  before_action :require_login
+  skip_before_action :require_login, only: [:index]
 
   def index
     @parties = Party.all
