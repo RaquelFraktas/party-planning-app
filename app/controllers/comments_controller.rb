@@ -5,11 +5,10 @@ class CommentsController < ApplicationController
   end
 
   def create
-    # @comment = Comment.create(contemt)
-    current_user.comments.build(comment_params)
+    @comment = Comment.new(comment_params)
+    current_user.comments << @comment
+    @comment.save
     @party = Party.find(params[:comment][:party_id])
-    @party.comments << @comment
-    byebug
     redirect_to party_path(@party)
   end
 

@@ -5,7 +5,7 @@ class User < ApplicationRecord
   has_many :parties
   has_many :rsvps, dependent: :destroy
   has_many :comments
-  has_many :parties, through: :comments
+  # has_many :parties, through: :comments
 
 
 

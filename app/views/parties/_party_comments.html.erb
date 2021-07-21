@@ -1,13 +1,17 @@
 <div class= "party_comments">
-  <%= party.comments.each do |comment| %>
-    <%= comment.user.name %>
-    <%= comment.content %>
+<ul class= "list_of_comments">  
+<% party.comments.each do |comment| %>
+    <li><%= comment.user.name %>: 
+    <%= comment.content %> </li> <br>
   <%end%>
-</div>
+
+</ul>
 
 <%= form_for Comment.new do |f| %>
   <%= f.label "Write your comment here:" %>
-  <%= f.text_field :content %>
+  <%= f.text_area :content %>
   <%= f.hidden_field :party_id, value: @party.id %>
   <%= f.submit %>
 <% end %>
+
+</div>
