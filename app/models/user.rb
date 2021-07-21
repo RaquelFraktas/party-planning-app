@@ -1,13 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  # validates :password, length {min: 8}
   
   has_many :parties
   has_many :rsvps, dependent: :destroy
   has_many :comments
-  # has_many :parties, through: :comments
-
-
 
   def self.o_auth_find_info(user_info)
     user= find_or_create_by(email: user_info['email']) do |u|

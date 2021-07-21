@@ -44,13 +44,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user= current_user
-    if @user.authenticate(params[:password])
+    if @user.authenticate(params[:user][:password])
       @user.destroy
       session.clear 
       redirect_to "/"
     else
-      flash[:alert] = "Wrong password."
-      redirect_to edit_user_path
+      flash[:alert] = "Invalid password."
+      redirect_to "/user/edit"
     end
   end
 
@@ -63,9 +63,5 @@ class UsersController < ApplicationController
   def user_params_for_update
     params.require(params[:type].to_sym.downcase).permit(:name)
   end
-
-  # def require_login
-  #   return head(:forbidden) unless session.include? :user_id
-  # end
 
 end
