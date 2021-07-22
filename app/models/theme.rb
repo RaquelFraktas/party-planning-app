@@ -3,5 +3,4 @@ class Theme < ApplicationRecord
   has_many :parties
   scope :search_for_theme, ->(name){where("name LIKE ?", "%{name%}")}
 
-  #Theme.search(name)
 end

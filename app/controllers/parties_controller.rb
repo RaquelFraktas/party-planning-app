@@ -3,7 +3,9 @@ class PartiesController < ApplicationController
   skip_before_action :require_login, only: [:index]
 
   def index
-    @parties = Party.all
+    @params = params.permit(:popular_parties, :newest_party, :oldest_party, :sort).to_h
+    @parties = Party.filter_by_params(@params)
+    
   end
 
   def show

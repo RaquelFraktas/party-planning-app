@@ -12,10 +12,28 @@ class Party < ApplicationRecord
 
   accepts_nested_attributes_for :theme
 
+  scope :popular_parties, -> {
+    left_joins(:rsvps)
+    .select("parties.*, count(rsvps.id) AS total_rsvps")
+    .group("parties.id")
+    .order("total_rsvps DESC")
+}
+
+  scope :newest_party, -> {order("created_at DESC")}
+  scope :oldest_party, -> {order("created_at ASC")}
 
   def theme_attributes=(theme)
     self.theme = Theme.find_or_create_by(name: theme[:name])
     self.theme.update(theme)
+  end
+
+  def self.filter_by_params(input)
+    if !input.empty?
+      params= input.values
+      Party.send(params.first)
+    else
+      Party.all
+    end
   end
 
 
