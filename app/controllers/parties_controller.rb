@@ -54,7 +54,7 @@ class PartiesController < ApplicationController
   private
 
   def party_params
-    params.require(:party).permit(:name, :capacity, theme_attributes: [:name, :era])
+    params.require(:party).permit(:name, :capacity, :about, theme_attributes: [:name, :era])
   end
 
   def current_user_rsvp(party)
