@@ -18,7 +18,7 @@ class PartiesController < ApplicationController
       @party = Party.new
       @party.theme = Theme.new
     else
-      #maybe create an alert that says you cannt access the page
+      flash[:alert] = "You don't have site privledges to create an event."
       redirect_to parties_path
     end
   end
@@ -32,9 +32,7 @@ class PartiesController < ApplicationController
 
   def edit
     @party= Party.find(params[:id])
-    if !current_user == @party.host
-      redirect_back(fallback_location: root_path)
-    end
+    return head(:forbidden) unless current_user == @party.host
   end
 
   def update

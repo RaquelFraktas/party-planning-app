@@ -3,6 +3,6 @@
 <% if @user.type== "Host" %>
   Here are the list of parties <%= @user.name %> is hosting 
 <% else %>
-  Here are the list of parties  <%= @user.name %> is attending
+  Here are the list of parties  <%= @user.name %> is attending:
 <% end %>
 <%= render partial: "party_list", locals: {user: @user} %>

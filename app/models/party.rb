@@ -22,6 +22,12 @@ class Party < ApplicationRecord
   scope :newest_party, -> {order("created_at DESC")}
   scope :oldest_party, -> {order("created_at ASC")}
 
+  # scope :theme_search, -> (theme_name){
+  #   left_joins(:themes)
+  #   .select("restaurants.*")
+  #   .where("theme.name LIKE ?", "%#{theme_name}%")
+  # }
+
   def theme_attributes=(theme)
     self.theme = Theme.find_or_create_by(name: theme[:name])
     self.theme.update(theme)

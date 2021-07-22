@@ -1,7 +1,7 @@
 <div class= "party_comments">
 <ul class= "list_of_comments">  
 <% party.comments.each do |comment| %>
-    <li><%= comment.user.name %>: 
+    <li><%= link_to comment.user.name, user_path(comment.user) %><%=  %>: 
     <%= comment.content %> </li> 
       <% if current_user == comment.user %>
         <%= link_to "Edit your post", edit_party_comment_path(party, comment) %>
