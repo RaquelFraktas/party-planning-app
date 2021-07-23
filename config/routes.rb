@@ -2,10 +2,10 @@ Rails.application.routes.draw do
   
   # resources :themes
   resources :parties do
-    resources :comments, only: [:index, :show, :edit, :update, :destroy]
+    resources :comments, only: [:show, :edit, :update, :destroy]
   end
 
-  resources :comments
+  resources :comments, only: [:show, :new, :create, :edit, :update, :destroy]
   resources :users, only: [:new, :create, :destroy, :update, :show]
   resources :rsvps, only: [:new, :create, :destroy]
   resources :hosts, :controller => 'users', type: "Host"

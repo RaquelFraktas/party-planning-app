@@ -2,26 +2,26 @@
 
 <div class="form">
 <%= form_for(party) do |f| %>
-
-    <%= f.label :name %><br>
-    <%= f.text_field :name %><br>
   
-    <div class= "create_theme">
-    <%= f.fields_for :theme do |theme| %>
-      <%= theme.label :Theme_Name %>
-      <%= theme.text_field :name %><br>
+  <%= f.label :name %><br>
+  <%= f.text_field :name %><br>
+  
+  <div class= "create_theme">
+  <%= f.fields_for :theme do |theme| %>
 
-      <%= theme.label :era %>
-      <%= theme.text_field :era %><br>
-    <% end %> 
-    </div>
+    <%= theme.label :Theme_Name %>
+    <%= theme.text_field :name %><br>
 
-    <%= f.label :capacity %><br>
-    <%= f.text_field :capacity %><br>
-
-    <%= f.label :about %><br>
-    <%= f.text_area :about %><br>
-
-    <%= f.submit %>
+    <%= theme.label :era %>
+    <%= theme.text_field :era %><br>
   <% end %> 
   </div>
+  <%= f.label :capacity %><br>
+  <%= f.text_field :capacity %><br>
+
+  <%= f.label :about %><br>
+  <%= f.text_area :about %><br>
+
+  <%= f.submit %>
+<% end %> 
+</div>

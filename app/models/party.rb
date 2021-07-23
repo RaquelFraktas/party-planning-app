@@ -7,7 +7,7 @@ class Party < ApplicationRecord
   belongs_to :theme
   has_many :rsvps, dependent: :destroy
   has_many :guests, through: :rsvps, foreign_key: :user_id
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :users, through: :comments
 
   accepts_nested_attributes_for :theme
@@ -17,14 +17,14 @@ class Party < ApplicationRecord
     .select("parties.*, count(rsvps.id) AS total_rsvps")
     .group("parties.id")
     .order("total_rsvps DESC")
-}
+  }
 
   scope :newest_party, -> {order("created_at DESC")}
   scope :oldest_party, -> {order("created_at ASC")}
 
   # scope :theme_search, -> (theme_name){
   #   left_joins(:themes)
-  #   .select("restaurants.*")
+  #   .select("parties.*")
   #   .where("theme.name LIKE ?", "%#{theme_name}%")
   # }
 

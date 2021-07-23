@@ -1,17 +1,16 @@
 <%= render partial: "layouts/flash_errors" %>
-
 Here is a list of all the parties
 <ul>
 <% @parties.each do |party| %>
- <li> <%= link_to party.name, party_path(party) %> </li>
+   <li> <%= link_to party.name, party_path(party) %> </li>
 <% end %>
 </ul>
 
 <%= form_tag parties_path, method: :get do %>
-    <%= select_tag :sort, raw("
-    <option value='popular_parties'>Most popular</option>
-    <option value='newest_party'>Recently added</option>
-    <option value='oldest_party'>Older parties</option>
-    ") %>
+  <%= select_tag :sort, raw("
+  <option value='popular_parties'>Most popular</option>
+  <option value='newest_party'>Recently added</option>
+  <option value='oldest_party'>Older parties</option>
+  ") %>
   <%= submit_tag "Re-Order" %>
 <% end %>

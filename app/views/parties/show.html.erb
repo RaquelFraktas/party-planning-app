@@ -1,35 +1,19 @@
 
- <h2> Name of the party: <%= @party.name %> <br> </h2>
- <h3> 
+<h2> Name of the party: <%= @party.name %> <br> </h2>
+<h3> 
   Theme of the party: <%= @party.theme.name %> <br>
-  Party capacity: <%= @party.capacity %> <br><br>
-  About this party: </h3> 
-  <div class = "about"> <%= @party.about %>  </div><br>
+  Party capacity: <%= @party.capacity %> <br>
+  <p>About this party:</p>
+</h3> 
+<p class = "about"> <%= @party.about %>  </p></div><br>
 
-
-<ul class = "guest_list">
-<% if !@party.guests.blank? %>
-<% @party.guests.each do |guest|%>
-    <li> <%=guest.name %> </li>
-  <% end %>
-  <% else %>
-    <h3> There is currently nobody attending. </h3>
-<% end %>
-</ul>
+<%= render partial: "guestlist", locals: {party: @party} %>
 
 <div class= "rsvp-field">
   <%= rsvp_button(@party)%>
-  <br><br><br>
   <%= remove_rsvp(@party, @rsvp)%>
 </div>
-
-
-
-
-    <% if current_user == @party.host %>
-       Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
-    <%end%>
-
-    <br><br>
-
-    <%= render partial: "party_comments", locals: {party: @party} %>
+<% if current_user == @party.host %>
+  Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
+<%end%>
+<p><%= render partial: "party_comments", locals: {party: @party} %></p>

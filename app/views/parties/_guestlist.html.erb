@@ -1,0 +1,10 @@
+<ul class = "guest_list">
+<% if !@party.guests.blank? %>
+<h3>The Guest List</h3>
+  <% @party.guests.each do |guest|%>
+    <li><%=guest.name %></li>
+  <% end %>
+  <% else %>
+    <h3> There is currently nobody attending. </h3>
+<% end %>
+</ul>

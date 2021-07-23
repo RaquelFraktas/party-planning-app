@@ -1,12 +1,9 @@
 class CommentsController < ApplicationController
-    before_action :require_login
+  before_action :require_login
 
-  def index
-    if params[:party_id]
-        @comments = Party.find(params[:party_id]).comments
-      else
-        @comments = Comment.all
-      end
+
+  def show
+    @comment = Comment.find(params[:id])
   end
 
   def create
