@@ -1,0 +1,4 @@
+<%= form_for Rsvp.new do |f| %>
+  <%= f.hidden_field :party_id, value: party.id %>
+  <%= f.submit " RSVP" %>
+<% end %>

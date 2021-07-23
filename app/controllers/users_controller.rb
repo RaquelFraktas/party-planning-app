@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-    before_action :require_login
-    skip_before_action :require_login, only: [:new, :create, :index]
+  before_action :require_login
+  skip_before_action :require_login, only: [:new, :create, :index]
 
   def index 
     if !logged_in?
@@ -16,10 +16,10 @@ class UsersController < ApplicationController
   def create
     @user = params[:user][:admin]== "1" ? Host.create(user_params) : Guest.create(user_params)   
     if @user.save
-        session[:user_id] = @user.id
-        redirect_to "/home"
+      session[:user_id] = @user.id
+      redirect_to "/home"
     else
-        render :new
+      render :new
     end
   end
 
@@ -29,7 +29,6 @@ class UsersController < ApplicationController
 
   def edit
     @user= current_user
-
   end
 
   def update

@@ -40,22 +40,21 @@ class SessionsController < ApplicationController
     user_session_or_redirect(user)
   end
 
-  #maybe those routes can be changed to just go through one method?
-
   protected
   
-    def auth
-      request.env['omniauth.auth']["info"]
-    end
+  def auth
+    request.env['omniauth.auth']["info"]
+  end
 
   private 
-    def user_session_or_redirect(user)
-      if user
-        session[:user_id] = user.id
-        redirect_to home_path
-      else
-        redirect_to login_path
-      end
+  
+  def user_session_or_redirect(user)
+    if user
+      session[:user_id] = user.id
+      redirect_to home_path
+    else
+      redirect_to login_path
     end
+  end
 
 end

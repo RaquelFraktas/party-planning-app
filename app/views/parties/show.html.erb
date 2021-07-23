@@ -1,7 +1,10 @@
-Name of the party: <%= @party.name %> <br>
-Theme of the party: <%= @party.theme.name %> <br>
-Party capacity: <%= @party.capacity %> <br><br>
-About this party: <div class = "about"> <%= @party.about %>  </div><br>
+
+ <h2> Name of the party: <%= @party.name %> <br> </h2>
+ <h3> 
+  Theme of the party: <%= @party.theme.name %> <br>
+  Party capacity: <%= @party.capacity %> <br><br>
+  About this party: </h3> 
+  <div class = "about"> <%= @party.about %>  </div><br>
 
 
 <ul class = "guest_list">
@@ -10,28 +13,18 @@ About this party: <div class = "about"> <%= @party.about %>  </div><br>
     <li> <%=guest.name %> </li>
   <% end %>
   <% else %>
-    There is currently nobody attending.
+    <h3> There is currently nobody attending. </h3>
 <% end %>
 </ul>
 
 <div class= "rsvp-field">
-<% if @party.guests.count == @party.capacity %>
-  This party is currently at capacity. Check back later to see if any space opens up.
-
-  <% elsif current_user.type == "Guest" && !@party.guests.include?(current_user) %>
-    <%= form_for Rsvp.new do |f| %>
-      <%= f.hidden_field :party_id, value: @party.id %>
-      <%= f.submit " RSVP" %>
-    <% end %>
-  <% end %>
-
+  <%= rsvp_button(@party)%>
   <br><br><br>
-    <% if @party.guests.include?(current_user) %>
-      I can't make it anymore.
-      <%= button_to "Remove myself from the list", rsvp_path(@rsvp), method: :delete %>
-    <% end %>
+  <%= remove_rsvp(@party, @rsvp)%>
+</div>
 
-    </div>
+
+
 
     <% if current_user == @party.host %>
        Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
