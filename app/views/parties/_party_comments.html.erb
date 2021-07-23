@@ -1,22 +1,19 @@
 <div class= "party_comments">
 <ul class= "list_of_comments">  
 <% party.comments.each do |comment| %>
-  
   <p><li><%= link_to comment.user.name, user_path(comment.user) %><%=  %>: 
   <%= comment.content %> <br>
   <%= link_to "View full comment", party_comment_path(party, comment) %>
-
   <% if current_user == comment.user %>
     <%= link_to "Edit your post", edit_party_comment_path(party, comment) %></p></li> 
   <% end %>
 <% end %></ul>
-
+<div class= "new comments">
 <%= form_for Comment.new do |f| %>
   <%= f.label "Write your comment here:" %>
   <%= f.text_area :content %>
-
   <%= f.hidden_field :party_id, value: @party.id %>
   <%= f.submit %>
 <% end %>
-
+</div>
 </div>

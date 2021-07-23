@@ -1,8 +1,8 @@
 <h1> This is <%= @user.name %> </h1>
 
-<% if @user.type== "Host" %>
+<p><% if @user.type== "Host" %>
   Here are the list of parties <%= @user.name %> is hosting 
 <% else %>
   Here are the list of parties  <%= @user.name %> is attending:
 <% end %>
-<%= render partial: "party_list", locals: {user: @user} %>
+<%= render partial: "party_list", locals: {user: @user} %></p>

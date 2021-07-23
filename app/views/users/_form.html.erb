@@ -1,5 +1,4 @@
 <%= render partial: "layouts/errors", locals: {record: user} %>
-
 <div class="form">
 <%= form_for(user) do |f| %>
     <%= f.label :name %><br>
@@ -21,6 +20,6 @@
   <% end %> 
   </div>
 
-  You can also create an account with  <%= link_to('Facebook', '/auth/facebook')%> or
+  <p>You can also create an account with  <%= link_to('Facebook', '/auth/facebook')%> or
   <%= link_to('Google', '/auth/google_oauth2')%>. <br>
-  Please note, you will not have access to create parties with this type of profile.
+  Please note, you will not have access to create parties with this type of profile.</p>

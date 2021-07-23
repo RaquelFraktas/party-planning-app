@@ -1,7 +1,6 @@
 <div class="alert_info">
   <% flash.each do |type,msg| %>
-      <%= msg %>
+    <%= msg %>
   <% end %>
 </div>
-
 <%=render partial: "login_form", locals: {user:@user} %>
