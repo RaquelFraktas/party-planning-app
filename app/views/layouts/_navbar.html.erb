@@ -1,12 +1,9 @@
-<div class="navbar">
+<nav class="navbar">
 
  <%= image_tag "", class: "site-logo"%>
-  <nav>
     <ul class= nav> 
       <li><%= link_to "Home Page", "/" %></li>
       <li><%= link_to "List of Parties", parties_path %></li>
-      <li><%= link_to "Back", :back %> </li>
       <li><%=link_to "Logout", logout_path %></li>
     </ul>
-  </nav>
-</div>
+</nav>

@@ -8,8 +8,8 @@
     </div>
   <% end %>
   <%= form_tag user_path(@user), method: "delete" do %>
-    <%= label_tag "To delete your account, please enter your password."  %> <br>
-    <%= password_field_tag 'user[password]' %>
+    <%= label_tag "Please enter your password."  %> <br>
+    <%= password_field_tag 'user[password]' %><br>
     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     <input value='Delete Account' type='submit' id='submit-form'/>
   <% end %>

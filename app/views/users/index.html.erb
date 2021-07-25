@@ -1,10 +1,11 @@
 <h1> Welcome <%= @user.name %> </h1>
 
-<div class ="index">
-<p>Click here to <%= link_to "edit", "/user/edit" %> your details.</p>
+
+<p class="party_list">Here's a list of your parties
 <%= render partial: "party_list", locals: {user: @user} %>
 <br><br>
 <% if current_user.type == "Host" %>
-<%= link_to "Create a new party", new_party_path %>
-<% end %>
-</div>
+  <%= link_to "Create a new party", new_party_path %>
+<% end %></p>
+
+<p class= "edit">Click here to <%= link_to "edit", "/user/edit" %> your details.</p>
