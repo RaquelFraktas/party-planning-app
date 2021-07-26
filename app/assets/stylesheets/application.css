@@ -17,6 +17,7 @@
   body {
     background-color: #FFFAFA;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    text-align:center;
   }
 
   #body_of_site{
@@ -24,8 +25,22 @@
     margin: auto;
   }
 
+  .homepage {
+    text-align: left;
+  }
+
   ul {
     list-style-type: none;
+    border:2px solid #ccc;
+    padding: 10px;
+  }
+
+  .guest_list {
+    text-align: center;
+    display: block;
+    margin-left: 30%;
+    margin-right: 30%; 
+    
   }
 
   .navbar {
@@ -39,6 +54,8 @@
   .navbar ul {
     background-color:#fcbeb4;
     float:left;
+    border: none;
+    padding: 10px;
   }
   
   .navbar li a {
@@ -69,9 +86,13 @@
   input[type=submit] {
     padding:5px 15px; 
     background: none; 
-    border:15px solid ccc;
+    border: 2px solid #ccc;
     -webkit-border-radius: 5px;
     border-radius: 5px; 
+  }
+
+  input:hover[type="submit"] {
+    background:  #ccc; 
   }
 
  .field_with_errors input {
@@ -81,6 +102,39 @@
   .errors {
     color: red;
     font-weight: bold;
+    /* padding: .75rem 1.25rem;
+    margin-bottom: 1rem; */
+    /* border: 1px solid transparent;
+    border-radius: .25rem; */
   }
 
+  .rsvp-field{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+  }
 
+  .rsvp-field input[type=submit] {
+    border:3px solid #f69383;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+  }
+
+  .list_of_comments {
+    text-align: left;
+    display: block;
+    margin-left: 30%;
+    margin-right: 30%; 
+    background-color: white;
+  }
+
+  textarea {
+    width: 600px;
+	  height: 120px;
+	  border: 3px solid #cccccc;
+	  padding: 5px;
+  }
+
+  .new_user, .new_party { text-align:left; }

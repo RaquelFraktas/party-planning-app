@@ -4,20 +4,20 @@
 <%= form_for(party) do |f| %>
   
   <%= f.label :name %><br>
-  <%= f.text_field :name %><br>
+  <%= f.text_field :name %><br><br>
   
   <div class= "create_theme">
   <%= f.fields_for :theme do |theme| %>
 
-    <%= theme.label :Theme_Name %>
-    <%= theme.text_field :name %><br>
+    <%= theme.label :Theme_Name %> <br> 
+    <%= theme.text_field :name %><br><br>
 
-    <%= theme.label :era %>
-    <%= theme.text_field :era %><br>
+    <%= theme.label :era %> <br>
+    <%= theme.text_field :era %><br><br>
   <% end %> 
   </div>
   <%= f.label :capacity %><br>
-  <%= f.text_field :capacity %><br>
+  <%= f.text_field :capacity %><br><br>
 
   <%= f.label :about %><br>
   <%= f.text_area :about %><br>

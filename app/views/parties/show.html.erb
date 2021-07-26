@@ -1,8 +1,8 @@
 
 <h2> Name of the party: <%= @party.name %> <br> </h2>
 <h3> Theme of the party: <%= @party.theme.name %> <br>
-  Party capacity: <%= @party.capacity %> <br>
-  <p>About this party:</p></h3> 
+  Party capacity: <%= @party.capacity %> <br></h3>
+<h4>About this party:</h4> 
 <p class = "about"> <%= @party.about %>  </p></div><br>
 
 <%= render partial: "guestlist", locals: {party: @party} %>

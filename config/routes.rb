@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :guests, :controller => 'users', type: "Guest"
   
   get '/home' => 'users#index'
+  get '/users' => 'users#new'
   get '/user/edit' => 'users#edit'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'

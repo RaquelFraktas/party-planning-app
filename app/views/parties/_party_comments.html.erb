@@ -10,9 +10,9 @@
 <% end %></ul>
 <div class= "new comments">
 <%= form_for Comment.new do |f| %>
-  <%= f.label "Write your comment here:" %>
+  <%= f.label "Write your comment here:" %><br>
   <%= f.text_area :content %>
-  <%= f.hidden_field :party_id, value: @party.id %>
+  <%= f.hidden_field :party_id, value: @party.id %><br>
   <%= f.submit %>
 <% end %>
 </div>
