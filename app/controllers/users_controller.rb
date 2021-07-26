@@ -15,8 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)  
-    if @user.save
-      @user.destroy
+    if @user.valid?
       @user = params[:user][:admin]== "1" ? Host.create(user_params) : Guest.create(user_params)
       session[:user_id] = @user.id
       redirect_to "/home"
