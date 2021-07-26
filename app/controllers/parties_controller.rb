@@ -25,8 +25,11 @@ class PartiesController < ApplicationController
   def create
     @party = Party.new(party_params)
     @party.host = current_user
-    @party.save
-    redirect_to party_path(@party)
+    if @party.save
+      redirect_to party_path(@party)
+    else
+      render :new
+    end
   end
 
   def edit
