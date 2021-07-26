@@ -1,23 +1,25 @@
 # README
 
-Welcome to my Ruby on Rails app.
+Welcome to my Ruby on Rails app. It uses Rails 6.1.4. 
 
-TBD:
+This app helps keep you in the loop of all the cool parties happening in your area. There are two types of users- a host, and a guest. The user will have the option to create any type of account. 
 
-* Ruby version
+A host will be able to create parties, and the guest has the option to RSVP. Both users can post comments on the events pages.
 
-* System dependencies
+Please run `bundle install` to install your gemfile for this program. 
 
-* Configuration
+Run `rails db:migrate`.
 
-* Database creation
+Since this app uses the `Omniauth gem` for Facebook and Google, you will need to grab the ClientID, and the SecretKey from both sites and create a `.env` file in the root directory of this app. 
 
-* Database initialization
+`
+FACEBOOK_KEY=XXXX
+FACEBOOK_SECRET=XXXX
 
-* How to run the test suite
+GOOGLE_CLIENT_ID=XXXX
+GOOGLE_CLIENT_SECRET=XXXX
+`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The detailed instructions on how to access the keys from the developer sites are located on the Facebook and Google `Omniauth` documentation. 
+https://github.com/simi/omniauth-facebook
+https://github.com/zquestz/omniauth-google-oauth2
