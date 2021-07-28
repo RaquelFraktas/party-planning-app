@@ -2,6 +2,11 @@ class CommentsController < ApplicationController
   before_action :require_login
 
 
+  def new
+    @comment = Comment.new
+    @party = Party.find(params[:party_id])
+  end
+
   def show
     @comment = Comment.find(params[:id])
   end

@@ -16,3 +16,5 @@ This party is brought to you by <strong><%= @party.host.name %></strong></div><b
   Click <%= link_to "here", edit_party_path(@party) %> to edit party details.
 <%end%>
 <p><%= render partial: "party_comments", locals: {party: @party} %></p>
+
+<p> Click <%= link_to "here", new_party_comment_path(@party) %> to create a new comment.</p>

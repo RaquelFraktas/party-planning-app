@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   
   # resources :themes
   resources :parties do
-    resources :comments, only: [:show, :edit, :update, :destroy]
+    resources :comments, only: [:show, :edit, :update, :destroy, :new]
   end
 
   
