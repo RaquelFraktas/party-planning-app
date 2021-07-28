@@ -12,6 +12,8 @@ class Party < ApplicationRecord
 
   accepts_nested_attributes_for :theme
 
+  scope :search,-> (name){where("name LIKE ?", "%#{name}%")}
+
   scope :popular_parties, -> {
     left_joins(:rsvps)
     .select("parties.*, count(rsvps.id) AS total_rsvps")
@@ -36,6 +38,7 @@ class Party < ApplicationRecord
   def self.filter_by_params(input)
     if !input.empty?
       params= input.values
+      byebug
       Party.send(params.first)
     else
       Party.all

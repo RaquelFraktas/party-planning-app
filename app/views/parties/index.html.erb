@@ -8,6 +8,12 @@
 
 <div class="scope_search">
 <%= form_tag parties_path, method: :get do %>
+  <%= label_tag :search %>
+  <%= text_field_tag :search, @params[:search]%>
+  <%= submit_tag "Search" %>
+<% end %><br>
+
+<%= form_tag parties_path, method: :get do %>
   <%= select_tag :sort, raw("
   <option value='popular_parties'>Most popular</option>
   <option value='newest_party'>Recently added</option>
