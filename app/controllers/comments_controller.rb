@@ -21,6 +21,7 @@ class CommentsController < ApplicationController
 
   def edit
     @comment = Comment.find(params[:id])
+    @party = Party.find(params[:party_id])
     redirect_back(fallback_location: root_path) unless current_user == @comment.user
     # return head(:forbidden) unless current_user == @comment.user
     #deciding on which is better.
